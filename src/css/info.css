@@ -1,0 +1,12 @@
+.typing-text {
+    animation: typing 0.1s steps(30, end);
+    overflow-wrap: break-word; 
+    direction: ltr; 
+  }
+  .typing-container {
+   width: 90%; 
+  }
+  @keyframes typing {
+    to { width: 100%; } 
+  }
+  
