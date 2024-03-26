@@ -18,9 +18,12 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { MonthlyLineChart } from './MonthlyLineChart'
 import { HomePage } from './HomePage'
 import { InfoYouShouldKnow } from './InfoYouShouldKnow'
+import FlagIcon from '@mui/icons-material/Flag'
 
 const drawerWidth = 240
 
@@ -134,55 +137,108 @@ export function MiniDrawer() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            {open ? (
+              <Typography>South America</Typography>
+            ) : (
+              <Typography>SA</Typography>
+            )}
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {[
+                { name: 'Argentina', flag: <FlagIcon /> },
+                { name: 'Chile', flag: <FlagIcon /> },
+                { name: 'Uruguay', flag: <FlagIcon /> },
+                { name: 'Brazil', flag: <FlagIcon /> },
+                { name: 'Bolivia', flag: <FlagIcon /> },
+                { name: 'Peru', flag: <FlagIcon /> },
+                { name: 'Ecuador', flag: <FlagIcon /> },
+                { name: 'Colombia', flag: <FlagIcon /> },
+                { name: 'Panama', flag: <FlagIcon /> },
+                { name: 'Costa Rica', flag: <FlagIcon /> },
+                { name: 'Nicaragua', flag: <FlagIcon /> },
+                { name: 'Guatemala', flag: <FlagIcon /> },
+                { name: 'Mexico', flag: <FlagIcon /> },
+                { name: 'Cuba', flag: <FlagIcon /> },
+                { name: 'Belize', flag: <FlagIcon /> },
+                { name: 'Honduras', flag: <FlagIcon /> },
+              ].map(({ name, flag }) => (
+                <ListItem key={name} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {flag}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={name}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <Accordion>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+          >
+            {open ? (
+              <Typography>South America</Typography>
+            ) : (
+              <Typography>SA</Typography>
+            )}
+          </AccordionSummary>
+          <AccordionDetails>
+            <List>
+              {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </AccordionDetails>
+        </Accordion>
       </Drawer>
 
       <Box

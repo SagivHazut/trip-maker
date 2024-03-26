@@ -39,7 +39,7 @@ export function MonthlyLineChart() {
   // Update chart width based on window size
   useEffect(() => {
     const updateChartWidth = () => {
-      const newWidth = window.innerWidth >= 1750 ? 1750 : 900
+      const newWidth = window.innerWidth >= 1550 ? 1500 : 900
       setChartWidth(newWidth)
     }
 
