@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../css/info.css'
 
-export const Info = () => {
+export const Info = ({ countryData }) => {
   const text = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab laboriosam
   harum sed quidem tempore debitis atque mollitia autem consequuntur aut
   placeat adipisci ipsum accusamus, saepe numquam minus quam nisi facere?Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab laboriosam
@@ -26,10 +26,14 @@ export const Info = () => {
       setAnimationComplete(true)
     }
   }, [charIndex, text, animationComplete])
-
+  console.log(countryData)
   return (
     <div className="typing-container">
-      <div className="typing-text">{typedText}</div>
+      {countryData ? (
+        <div className="typing-text">{countryData.info}</div>
+      ) : (
+        <div className="typing-text">{text}</div>
+      )}
     </div>
   )
 }

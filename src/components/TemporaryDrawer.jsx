@@ -16,14 +16,14 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { MonthlyLineChart } from './MonthlyLineChart'
 import { HomePage } from './HomePage'
 import { InfoYouShouldKnow } from './InfoYouShouldKnow'
-import FlagIcon from '@mui/icons-material/Flag'
+import countries from './CountryData'
+import InboxIcon from '@mui/icons-material/MoveToInbox'
+import MailIcon from '@mui/icons-material/Mail'
 
 const drawerWidth = 240
 
@@ -95,6 +95,7 @@ const Drawer = styled(MuiDrawer, {
 export function MiniDrawer() {
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
+  const [selectedCountry, setSelectedCountry] = React.useState(null)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -103,7 +104,9 @@ export function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
+  const handleCountryClick = (countryData) => {
+    setSelectedCountry(countryData)
+  }
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -151,24 +154,7 @@ export function MiniDrawer() {
           </AccordionSummary>
           <AccordionDetails>
             <List>
-              {[
-                { name: 'Argentina', flag: <FlagIcon /> },
-                { name: 'Chile', flag: <FlagIcon /> },
-                { name: 'Uruguay', flag: <FlagIcon /> },
-                { name: 'Brazil', flag: <FlagIcon /> },
-                { name: 'Bolivia', flag: <FlagIcon /> },
-                { name: 'Peru', flag: <FlagIcon /> },
-                { name: 'Ecuador', flag: <FlagIcon /> },
-                { name: 'Colombia', flag: <FlagIcon /> },
-                { name: 'Panama', flag: <FlagIcon /> },
-                { name: 'Costa Rica', flag: <FlagIcon /> },
-                { name: 'Nicaragua', flag: <FlagIcon /> },
-                { name: 'Guatemala', flag: <FlagIcon /> },
-                { name: 'Mexico', flag: <FlagIcon /> },
-                { name: 'Cuba', flag: <FlagIcon /> },
-                { name: 'Belize', flag: <FlagIcon /> },
-                { name: 'Honduras', flag: <FlagIcon /> },
-              ].map(({ name, flag }) => (
+              {countries.map(({ name, flag, data }) => (
                 <ListItem key={name} disablePadding sx={{ display: 'block' }}>
                   <ListItemButton
                     sx={{
@@ -176,12 +162,15 @@ export function MiniDrawer() {
                       justifyContent: open ? 'initial' : 'center',
                       px: 2.5,
                     }}
+                    onClick={() => handleCountryClick(data)}
                   >
                     <ListItemIcon
                       sx={{
                         minWidth: 0,
-                        mr: open ? 3 : 'auto',
+                        marginRight: open ? 3 : 'auto',
                         justifyContent: 'center',
+                        width: '24px',
+                        height: '24px',
                       }}
                     >
                       {flag}
@@ -254,7 +243,7 @@ export function MiniDrawer() {
             p: 5,
           }}
         >
-          <HomePage />
+          <HomePage countryData={selectedCountry} />
         </Box>
 
         <MonthlyLineChart />

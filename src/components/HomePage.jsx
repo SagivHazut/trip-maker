@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Info } from './Info'
 
-export const HomePage = () => {
+export const HomePage = ({ countryData }) => {
   const [inputText, setInputText] = useState('')
-  const [responseText, setResponseText] = useState('')
 
   const handleClick = () => {
     const options = {
@@ -25,8 +24,6 @@ export const HomePage = () => {
     axios
       .request(options)
       .then((response) => {
-        setResponseText(response.data) // Update the responseText state with the received response
-
         console.log(response.data)
       })
       .catch((error) => {
@@ -48,7 +45,7 @@ export const HomePage = () => {
           padding: '30px',
         }}
       >
-        <Info />
+        <Info countryData={countryData} />
       </div>
     </div>
   )

@@ -1,42 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Area,
+  ReferenceLine,
+} from 'recharts'
 
 export function MonthlyLineChart() {
   const [chartWidth, setChartWidth] = useState(900)
 
-  // Define months as labels for x-axis
-  const months = [
-    { month: 'January' },
-    { month: 'February' },
-    { month: 'March' },
-    { month: 'April' },
-    { month: 'May' },
-    { month: 'June' },
-    { month: 'July' },
-    { month: 'August' },
-    { month: 'September' },
-    { month: 'October' },
-    { month: 'November' },
-    { month: 'December' },
-  ]
-
-  // Example data for each month
   const data = [
-    { month: 'Jan', value: 10 },
-    { month: 'Feb', value: 20 },
-    { month: 'Mar', value: 30 },
-    { month: 'Apr', value: 25 },
-    { month: 'May', value: 35 },
-    { month: 'Jun', value: 40 },
-    { month: 'Jul', value: 45 },
-    { month: 'Aug', value: 50 },
-    { month: 'Sep', value: 45 },
-    { month: 'Oct', value: 55 },
-    { month: 'Nov', value: 60 },
-    { month: 'Dec', value: 55 },
+    { month: 'Jan', value: 0, data: 'session' },
+    { month: 'Feb', value: 0.5, data: 'session' },
+    { month: 'Mar', value: 3, data: 'session' },
+    { month: 'Apr', value: 3, data: 'session' },
+    { month: 'May', value: 3, data: 'session' },
+    { month: 'Jun', value: 3, data: 'session' },
+    { month: 'Jul', value: 3, data: 'session' },
+    { month: 'Aug', value: 0, data: 'session' },
+    { month: 'Sep', value: 0, data: 'session' },
+    { month: 'Oct', value: 0, data: 'session' },
+    { month: 'Nov', value: 3, data: 'session' },
+    { month: 'Dec', value: 3, data: 'session' },
   ]
 
-  // Update chart width based on window size
   useEffect(() => {
     const updateChartWidth = () => {
       const newWidth = window.innerWidth >= 1550 ? 1500 : 900
@@ -58,7 +49,9 @@ export function MonthlyLineChart() {
       <XAxis dataKey="month" />
       <YAxis />
       <Tooltip />
-      <Line type="monotone" dataKey="value" stroke="#8884d8" />
+      <Line type="monotone" dataKey="value" stroke="#8882d8" />
+      <Area type="monotone" dataKey="value" fill="red" fillOpacity={0.3} />
+      <ReferenceLine y={0} stroke="red" />
     </LineChart>
   )
 }
